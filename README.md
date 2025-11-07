@@ -1,4 +1,4 @@
-# CS121 Project 9
+# CS121 Project 10
 Bank on it Part 2
 
 # Algorithm
@@ -66,3 +66,8 @@ Customer Menu
 
 Report (getReport()):  
 "Customer: <name>\nChecking: " + checking.getBalanceString() + "\nSavings: " + savings.getBalanceString()
+
+## New Additions
+* Create Customer List
+* Create Bank
+* Create admin login and admin functions
