@@ -1,27 +1,26 @@
 /* CheckingAccount.java
-    A checking account class that implements a menu to interact with the user and
-    manage the account balance.
+   a checking account class that implements a menu to interact with the user and
+   manage the account balance.
 */
-
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class CheckingAccount implements HasMenu {
-    protected double balance; // account balance, double for exact amounts
+public class CheckingAccount implements HasMenu, Serializable {
+    private static final long serialVersionUID = 1L;
 
-    public CheckingAccount() {
-        this(0.0d); // default blanace set to 0.0
-    }
+    protected double balance; // account balance
 
-    public CheckingAccount(double balance) {
-        this.balance = balance; // intialize balance
-    }
+    public CheckingAccount() { this(0.0d); }
+
+    public CheckingAccount(double balance) { this.balance = balance; }
 
     public static void main(String[] args) {
         CheckingAccount acct = new CheckingAccount();
-        acct.start(); // start the user interaction
+        acct.start();
     }
 
-    public String menu() { // display menu and get choice
+    
+    public String menu() {
         System.out.println("\nAccount menu\n");
         System.out.println("0) quit");
         System.out.println("1) check balance");
@@ -32,7 +31,8 @@ public class CheckingAccount implements HasMenu {
         return sc.nextLine().trim();
     }
 
-    public void start() { // main loop to process choices
+    
+    public void start() {
         System.out.println("Checking Account");
         while (true) {
             String choice = menu();
@@ -46,20 +46,18 @@ public class CheckingAccount implements HasMenu {
         }
     }
 
-    public double getBalance() { return balance; } // getter for balance
+    public double getBalance() { return balance; }
 
-    public String getBalanceString() { 
-        return String.format("$%.2f", balance); // formatted balance
-    }
+    public String getBalanceString() { return String.format("$%.2f", balance); }
 
-    public void setBalance(double balance) { this.balance = balance; } // setter for balance
+    public void setBalance(double balance) { this.balance = balance; }
 
-    public void checkBalance() { // display current balance
+    public void checkBalance() {
         System.out.println("Checking balance...");
         System.out.println("Current balance: " + getBalanceString());
     }
 
-    private double getDouble(String prompt) { // utility to get double input
+    protected double getDouble(String prompt) {
         System.out.print(prompt);
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine().trim();
@@ -71,7 +69,7 @@ public class CheckingAccount implements HasMenu {
         }
     }
 
-    public void makeDeposit() { // process a deposit 
+    public void makeDeposit() {
         System.out.println("Making a deposit...");
         double amt = getDouble("How much to deposit? ");
         if (amt < 0) {
@@ -82,14 +80,14 @@ public class CheckingAccount implements HasMenu {
         System.out.println("New balance: " + getBalanceString());
     }
 
-    public void makeWithdrawal() { // process a withdrawal
+    public void makeWithdrawal() {
         System.out.println("Making a withdrawal...");
         double amt = getDouble("How much to withdraw? ");
         if (amt < 0) {
             System.out.println("Cannot withdraw negative amounts.");
             return;
         }
-        balance -= amt; 
+        balance -= amt;
         System.out.println("New balance: " + getBalanceString());
     }
 }

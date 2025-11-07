@@ -1,28 +1,26 @@
 /* Customer.java
-    Used to manage a customers checking and savings accounts. 
+   used to manage a customer's checking and savings accounts.
 */
-
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Customer extends User { // customer class to manage accounts
-    private CheckingAccount checking;
-    private SavingsAccount savings;
+public class Customer extends User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    CheckingAccount checking;
+    SavingsAccount savings;
 
     public static void main(String[] args) {
-        // default test user
         Customer c = new Customer("Alice", "1111");
         c.start();
     }
 
-    public Customer() { // default user
-        this("Alice", "1111");
-    }
+    public Customer() { this("Alice", "1111"); }
 
     public Customer(String userName, String PIN) {
         this.userName = userName;
         this.PIN = PIN;
         this.checking = new CheckingAccount(0.0d);
-        this.savings  = new SavingsAccount(0.0d, 0.01d); // 1% interest
+        this.savings  = new SavingsAccount(0.0d, 0.01d); // default 1%
     }
 
     public void start() {
@@ -35,7 +33,7 @@ public class Customer extends User { // customer class to manage accounts
             System.out.println("1) Manage Checking Account");
             System.out.println("2) Manage Savings Account");
             System.out.println("3) change PIN");
-            String action = menu(); // reuses prompt
+            String action = menu();
             switch (action) {
                 case "0": break outer;
                 case "1": checking.start(); break;
@@ -46,14 +44,13 @@ public class Customer extends User { // customer class to manage accounts
         }
     }
 
-
-    public String menu() { // display menu and get choice
+    public String menu() {
         System.out.print("\nAction (0-3): ");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine().trim();
     }
 
-    public void changePIN() { // change the users pin
+    public void changePIN() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter new PIN: ");
         String np = sc.nextLine().trim();
@@ -61,9 +58,16 @@ public class Customer extends User { // customer class to manage accounts
         System.out.println("PIN changed.");
     }
 
-    public String getReport() { // get a report string
+    // helper for Bank.applyInterest()
+    public double applyInterestToSavings() {
+        savings.calcInterest();
+        return savings.getBalance();
+    }
+
+    // report format required by the assignment sample
+    public String getReport() {
         return String.format(
-            "Customer: %s | Checking: %s | Savings: %s",
+            "User: %s, Checking: %s, Savings: %s",
             userName, checking.getBalanceString(), savings.getBalanceString()
         );
     }
