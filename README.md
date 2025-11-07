@@ -1,10 +1,10 @@
 # CS121 Project 9
-Bank on it Part 1
+Bank on it Part 2
 
 # Algorithm
 
 * Goal(this week):
-  * Build HasMenu, CheckingAccount, SavingsAccount, abstract User, and Customer.  
+  * Build rest of project
 
 ## Interface
 * HasMenu
