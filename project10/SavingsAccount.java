@@ -8,7 +8,7 @@ public class SavingsAccount extends CheckingAccount {
 
     public SavingsAccount() { this(0.0d, 0.0d); }
 
-    public SavingsAccount(double balance, double interestRate) {
+    public SavingsAccount(double balance, double interestRate) { 
         super(balance);
         this.interestRate = interestRate;
     }
@@ -18,7 +18,7 @@ public class SavingsAccount extends CheckingAccount {
         s.start();
     }
 
-    public void calcInterest() {
+    public void calcInterest() { // interest
         double interest = balance * interestRate;
         balance += interest;
     }

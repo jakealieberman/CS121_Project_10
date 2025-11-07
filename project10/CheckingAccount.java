@@ -16,11 +16,11 @@ public class CheckingAccount implements HasMenu, Serializable {
 
     public static void main(String[] args) {
         CheckingAccount acct = new CheckingAccount();
-        acct.start();
+        acct.start(); 
     }
 
     
-    public String menu() {
+    public String menu() { // menu selection
         System.out.println("\nAccount menu\n");
         System.out.println("0) quit");
         System.out.println("1) check balance");
@@ -32,7 +32,7 @@ public class CheckingAccount implements HasMenu, Serializable {
     }
 
     
-    public void start() {
+    public void start() { // start checking account
         System.out.println("Checking Account");
         while (true) {
             String choice = menu();
@@ -53,7 +53,6 @@ public class CheckingAccount implements HasMenu, Serializable {
     public void setBalance(double balance) { this.balance = balance; }
 
     public void checkBalance() {
-        System.out.println("Checking balance...");
         System.out.println("Current balance: " + getBalanceString());
     }
 
@@ -70,7 +69,6 @@ public class CheckingAccount implements HasMenu, Serializable {
     }
 
     public void makeDeposit() {
-        System.out.println("Making a deposit...");
         double amt = getDouble("How much to deposit? ");
         if (amt < 0) {
             System.out.println("Cannot deposit negative amounts.");
@@ -81,9 +79,8 @@ public class CheckingAccount implements HasMenu, Serializable {
     }
 
     public void makeWithdrawal() {
-        System.out.println("Making a withdrawal...");
         double amt = getDouble("How much to withdraw? ");
-        if (amt < 0) {
+        if (amt < 0) { // withdrawal protection
             System.out.println("Cannot withdraw negative amounts.");
             return;
         }

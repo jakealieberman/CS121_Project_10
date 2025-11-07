@@ -60,7 +60,7 @@ public class Bank implements HasMenu, Serializable {
         }
     }
 
-    // Admin actions are implemented here per assignment
+    // admin actions are implemented here per assignment
     public void startAdmin() {
         while (true) {
             String choice = admin.menu();

@@ -1,5 +1,4 @@
 /* CustomerList.java
-   wrapper list to avoid deserialization warnings.
 */
 import java.io.Serializable;
 import java.util.ArrayList;

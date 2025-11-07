@@ -3,7 +3,7 @@
 */
 import java.util.Scanner;
 
-public class Admin extends User {
+public class Admin extends User { 
     public Admin() {
         this.userName = "admin";
         this.PIN = "0000";
@@ -24,7 +24,7 @@ public class Admin extends User {
     // Intentionally empty per assignment; Bank manages admin actions.
     public void start() { }
 
-    public String getReport() {
+    public String getReport() { 
         return "Admin: " + userName + " (PIN: " + PIN + ")";
     }
 }
